@@ -1,0 +1,17 @@
+[Unit]
+Description=Xonotic Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/var/games/xonotic-srv
+#User
+
+ExecStop=screen -XS server quit > /dev/null 2>&1; screen -wipe;
+ExecStart=screen -S server -D -m xonotic-dedicated
+
+[Install]
+WantedBy=multi-user.target
